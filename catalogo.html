@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Catálogo - Gomelas Shop</title>
+    <style>
+        body {
+            background-color: #FFBDF8;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333333;
+        }
+
+        .encabezado {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .encabezado h1 {
+            color: #ffffff;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
+            margin-bottom: 10px;
+        }
+
+        /* Botón elegante para regresar a la página principal */
+        .btn-regresar {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #ffffff;
+            color: #FFBDF8;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .btn-regresar:hover {
+            transform: scale(1.05);
+        }
+
+        /* Cuadrícula organizada para los productos */
+        .cuadricula-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Tarjeta individual de cada producto */
+        .tarjeta-producto {
+            background-color: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+            padding-bottom: 15px;
+        }
+
+        .tarjeta-producto img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover; /* Evita que la foto de la prenda se deforme */
+        }
+
+        .tarjeta-producto h3 {
+            margin: 15px 10px 5px 10px;
+            font-size: 18px;
+            color: #555555;
+        }
+
+        .tarjeta-producto .precio {
+            font-size: 16px;
+            font-weight: bold;
+            color: #FFBDF8;
+            background-color: #fff0fc;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="encabezado">
+    <h1>Nuestro Catálogo</h1>
+    <a href="index.html" class="btn-regresar">← Volver al Inicio</a>
+</div>
+
+<!-- Sección de la tienda -->
+<div class="cuadricula-productos">
+
+    <!-- Producto 1 -->
+    <div class="tarjeta-producto">
+        <img src="prenda1.jpg" alt="Conjunto Encaje">
+        <h3>Conjunto de Encaje Premium</h3>
+        <div class="precio">$25.00</div>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="tarjeta-producto">
+        <img src="prenda2.jpg" alt="Bata Seda">
+        <h3>Bata de Seda Elegante</h3>
+        <div class="precio">$30.00</div>
+    </div>
+
+    <!-- Producto 3 -->
+    <div class="tarjeta-producto">
+        <img src="prenda3.jpg" alt="Baby doll">
+        <h3>Baby Doll Satín</h3>
+        <div class="precio">$22.50</div>
+    </div>
+
+    <!-- Puedes copiar y pegar más bloques de estos si tienes más productos -->
+
+</div>
+
+</body>
+</html>
