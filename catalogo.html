@@ -55,51 +55,152 @@
             transition: transform 0.2s;
         }
 
-        .btn-agg:hover {
-            transform: scale(1.10);
-        }
+     /* Contenedor general de productos */
+.productos-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
 
-        /* Cuadrícula organizada para los productos */
-        .cuadricula-productos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* Tarjeta de Producto Corregida */
+.producto-tarjeta {
+    background: #ffffff;
+    border: 1px solid #ffdcfb;
+    border-radius: 12px;
+    padding: 15px;
+    width: 280px;
+    box-shadow: 0 4px 10px rgba(255, 189, 248, 0.15);
+    
+    /* ESTO ES LO CLAVE: Organiza todo en vertical y empuja el botón abajo */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
 
-        /* Tarjeta individual de cada producto */
-        .tarjeta-producto {
-            background-color: #ffffff;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
-            text-align: center;
-            padding-bottom: 15px;
-        }
+.producto-imagen {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
 
-        .tarjeta-producto img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover; /* Evita que la foto de la prenda se deforme */
-        }
+.producto-titulo {
+    font-size: 1.1rem;
+    margin: 10px 0 5px 0;
+    color: #333333;
+}
 
-        .tarjeta-producto h3 {
-            margin: 15px 10px 5px 10px;
-            font-size: 18px;
-            color: #555555;
-        }
+.producto-precio {
+    font-weight: bold;
+    color: #cc60c3; /* Un tono rosa oscuro para que resalte el precio y sea legible */
+    margin-bottom: 10px;
+}
 
-        .tarjeta-producto .precio {
-            font-size: 16px;
-            font-weight: bold;
-            color: #black;
-            background-color: #fff0fc;
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 15px;
-            margin-bottom: 10px;
-        }
+/* Contenedor de Selectores (Talla, Color, Piezas) */
+.producto-opciones {
+    margin-bottom: 15px;
+}
+
+.opcion-grupo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.opcion-grupo label {
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+.opcion-grupo select {
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ffbdf8;
+    background-color: #fff8fe;
+    width: 65%;
+    font-size: 0.85rem;
+    color: #333333;
+}
+
+.opcion-grupo select:focus {
+    outline: none;
+    border-color: #cc60c3;
+}
+
+/* Botón Agregar al Carrito con tu Color #FFBDF8 */
+.btn-agregar {
+    background-color: #FFBDF8;
+    color: #4a1543; /* Texto oscuro para que contraste perfectamente sobre el rosa pastel */
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.btn-agregar:hover {
+    background-color: #ffa3f5; /* Se oscurece un poco al pasar el mouse */
+    transform: translateY(-2px); /* Pequeño efecto de elevación */
+}
+
+/* Estilos de la Barra Lateral o Sección del Carrito */
+.carrito-contenedor {
+    background: #fff5fe; /* Fondo sutil con matiz rosa */
+    border: 2px solid #FFBDF8;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 30px auto;
+    box-shadow: 0 4px 15px rgba(255, 189, 248, 0.2);
+}
+
+.carrito-contenedor h3 {
+    color: #4a1543;
+    margin-top: 0;
+    border-bottom: 2px solid #FFBDF8;
+    padding-bottom: 8px;
+}
+
+#lista-carrito li {
+    font-size: 0.95rem;
+    color: #333333;
+    border-bottom: 1px dashed #ffdcfb;
+    padding-bottom: 8px;
+}
+
+.carrito-total {
+    padding-top: 10px;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    text-align: right;
+    color: #4a1543;
+}
+
+/* Botón Verde Oficial de WhatsApp */
+.btn-pagar {
+    background-color: #1A1A1A; 
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-pagar:hover {
+    background-color: #333333;
+    transform: translateY(-2px);
+}
          <link href="https://googleapis.com" rel="stylesheet">
     </style>
 </head>
@@ -111,13 +212,14 @@
 </div>
 
 <!-- Sección de la tienda -->
-<div class="cuadricula-productos">
+<div class="productos-contenedor">
 
     <!-- Producto 1 -->
-    <div class="tarjeta-producto">
-        <img src="imagenes/cucos/prenda1.jpg" alt="Conjunto Encaje">
+    <div class="producto-tarjeta">
+        <img src="imagenes/cucos/prenda1.jpg">
         <h3>Set Eva</h3>
         <div class="precio">$12</div>
+        <div class="opcion-grupo">
         
         <label>Tallas</label>
         <select class="producto-talla">
@@ -126,7 +228,9 @@
             <option value="L">L</option>
             <option value="XL">XL</option>
         </select>
-        
+        </div>
+            
+         <div class="opcion-grupo">
         <label>Color base</label>
         <select class="producto-color">
          <option value="negro">Negro</option>
@@ -135,7 +239,9 @@
          <option value="vinotinto">Vinotitnto</option>
          <option value="personalizado">Personalizado</option>
         </select>
-
+         </div>
+        
+         <div class="opcion-grupo">
         <label>Piezas</label>
         <select class="producto-piezas">
         <option value="panty">Panty</option>
@@ -144,21 +250,24 @@
     </div>
             
     <!-- Producto 2 -->
-    <div class="tarjeta-producto">
-        <img src="imagenes/cucos/prenda2.jpg" alt="Bata Seda">
+    <div class="producto-tarjeta">
+        <img src="imagenes/cucos/prenda2.jpg">
         <h3>Set coquete</h3>
         <div class="precio">$15</div>
-        
+         <div class="opcion-grupo">
+             
            <label>Tallas</label>
         <select class="producto-talla">
             <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>
             <option value="XL">XL</option>
-            
-        </select>
+            </select>
+         </div>
         
+         <div class="opcion-grupo">
            <label>Color base</label>
+        <select class="producto-color">
          <option value="rosa">Rosa</option>
          <option value="lila">Lila</option>
          <option value="azul">Azul BB</option>
@@ -170,10 +279,11 @@
         
     <!-- Producto 3 -->
     <div class="tarjeta-producto">
-        <img src="imagenes/cucos/prenda3.jpg" alt="Baby doll">
+        <img src="imagenes/cucos/prenda3.jpg">
         <h3>Set Ella</h3>
         <div class="precio">$12</div>
-
+         <div class="opcion-grupo">
+             
          <label>Tallas</label>
         <select class="producto-talla">
             <option value="S">S</option>
@@ -181,7 +291,9 @@
             <option value="L">L</option>
             <option value="XL">XL</option>
         </select>
+         </div> 
         
+         <div class="opcion-grupo">
         <label>Color base</label>
         <select class="producto-color">
          <option value="negro">Negro</option>
@@ -190,7 +302,9 @@
          <option value="vinotinto">Vinotitnto</option>
          <option value="personalizado">Personalizado</option>
         </select>
-
+         </div> 
+        
+         <div class="opcion-grupo">
         <label>Piezas</label>
         <select class="producto-piezas">
         <option value="panty">Panty</option>
@@ -199,10 +313,11 @@
     </div>
 
       <div class="tarjeta-producto">
-        <img src="imagenes/cucos/prenda1.jpg" alt="Conjunto Encaje">
+        <img src="imagenes/cucos/prenda1.jpg">
         <h3>Set Honey</h3>
         <div class="precio">$12</div>
-        
+         <div class="opcion-grupo">
+             
         <label>Tallas</label>
         <select class="producto-talla">
             <option value="S">S</option>
@@ -210,7 +325,9 @@
             <option value="L">L</option>
             <option value="XL">XL</option>
         </select>
-        
+         </div>
+          
+         <div class="opcion-grupo">
         <label>Color base</label>
         <select class="producto-color">
          <option value="negro">Negro</option>
@@ -219,7 +336,9 @@
          <option value="vinotinto">Vinotitnto</option>
          <option value="personalizado">Personalizado</option>
         </select>
-
+         </div>
+          
+              <div class="opcion-grupo">
         <label>Piezas</label>
         <select class="producto-piezas">
         <option value="panty">Panty</option>
@@ -228,10 +347,11 @@
       </div>
 
               <div class="tarjeta-producto">
-        <img src="imagenes/cucos/prenda1.jpg" alt="Conjunto Encaje">
+        <img src="imagenes/cucos/prenda1.jpg">
         <h3>Set Dina</h3>
         <div class="precio">$12</div>
-        
+         <div class="opcion-grupo">
+             
         <label>Tallas</label>
         <select class="producto-talla">
             <option value="S">S</option>
@@ -239,7 +359,9 @@
             <option value="L">L</option>
             <option value="XL">XL</option>
         </select>
-        
+         </div>
+                  
+              <div class="opcion-grupo">
         <label>Color base</label>
         <select class="producto-color">
          <option value="negro">Negro</option>
@@ -248,7 +370,9 @@
          <option value="vinotinto">Vinotitnto</option>
          <option value="personalizado">Personalizado</option>
         </select>
-
+              </div>
+                  
+        <div class="opcion-grupo">
         <label>Piezas</label>
         <select class="producto-piezas">
         <option value="panty">Panty</option>
@@ -257,10 +381,11 @@
               </div>
 
               <div class="tarjeta-producto">
-        <img src="imagenes/cucos/prenda1.jpg" alt="Conjunto Encaje">
+        <img src="imagenes/cucos/prenda1.jpg">
         <h3>Bralett</h3>
         <div class="precio">$5,6,7</div>
-        
+         <div class="opcion-grupo">
+             
         <label>Tallas</label>
         <select class="producto-talla">
             <option value="32">32</option>
@@ -268,7 +393,9 @@
             <option value="36">36</option>
             <option value="38">38</option>
         </select>
-        
+         </div>
+
+              <div class="opcion-grupo">
         <label>Color base</label>
         <select class="producto-color">
          <option value="negro">Negro</option>
@@ -277,9 +404,19 @@
          <option value="vinotinto">Vinotitnto</option>
          <option value="personalizado">Personalizado</option>
         </select>
+              </div>
                 
  <button class="btn-agg">Agragar al carrito</button>
               </div>
+                  <div id="carrito-flotante" class="carrito-contenedor">
+                      <h3>Tu carrito (Gomelas Shop)</h3>
+                      <ul id="lista-carrito">
+                      </ul>
+                      <div class="carrito-total">
+                          <strong>Total: $<span id="total-precio">0.00</span></strong>
+                      </div>
+                      <button id="btn-pagar" class="btn-pagar">Pedir por Whatsapp</button>
+                  </div>
     <script>
         let carrito= [];
         document.querySelectorAll('btn-agregar').forEach(boton=> {
