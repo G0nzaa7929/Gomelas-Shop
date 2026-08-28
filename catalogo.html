@@ -449,23 +449,12 @@ if (typeof carrito === 'undefined') {
     var carrito = [];
 }
 
-// 1. ESCUCHAR CUANDO SE AGREGA UN PRODUCTO AL CARRITO (CON DIAGNÓSTICO)
+// 1. ESCUCHAR CUANDO SE AGREGA UN PRODUCTO AL CARRITO (CORREGIDO A BTN-AGG)
 document.addEventListener('click', function(e) {
-    const esBotonAgregar = e.target && (
-        e.target.classList.contains('btn-agregar') || 
-        e.target.id === 'btn-agregar' || 
-        (e.target.tagName === 'BUTTON' && e.target.innerText.toLowerCase().includes('agregar'))
-    );
-
-    if (esBotonAgregar) {
-        // Buscamos la tarjeta
+    // CORRECCIÓN MAESTRA: Ahora busca estrictamente la clase de tus botones reales
+    if (e.target && e.target.classList.contains('btn-agg')) {
         const contenedor = e.target.closest('.producto-tarjeta'); 
-        
-        // ¡DIAGNÓSTICO 1! Si no encuentra la tarjeta, nos avisa qué pasó
-        if (!contenedor) {
-            alert("❌ ¡Error! El script no encontró ninguna tarjeta con la clase '.producto-tarjeta'. Revisa cómo se llama la clase en tu HTML.");
-            return;
-        }
+        if (!contenedor) return;
 
         let precioSucio = contenedor.dataset.precio || contenedor.dataset.price || "0";
         let precioLimpio = precioSucio.replace('$', '').trim();
@@ -485,9 +474,7 @@ document.addEventListener('click', function(e) {
         };
 
         carrito.push(producto);
-        
-        // ¡DIAGNÓSTICO 2! Si todo sale bien, este mensaje DEBE aparecer
-        alert(`✅ ¡Éxito! Agregado al carrito: ${producto.nombre} - Precio: $${producto.precio}`);
+        alert(`✨ ${producto.nombre} agregado al carrito con éxito`);
     }
 });
 
