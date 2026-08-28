@@ -436,9 +436,9 @@
             </div>
     <script>
         let carrito= [];
-        document.querySelectorAll('btn-agregar').forEach(boton=> {
+        document.querySelectorAll('.btn-agregar').forEach(boton=> {
             boton.addEvenListener('click',(e) => {
-                const contenedor = e.taregt.closet('.producto');
+                const contenedor = e.target.closest('.producto');
                 const producto = {
                     id: contenedor.dataset.id,
                     nombre: contenedor.dataset.nombre,
@@ -448,7 +448,7 @@
                     cantidad: 1
                 };
                 carrito.push(producto);
-                alert(`${producto-nombre} agregador al carrito`);
+                alert(`${producto.nombre} agregador al carrito`);
             });
         });
         
