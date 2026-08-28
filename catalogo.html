@@ -449,17 +449,22 @@ if (typeof carrito === 'undefined') {
     var carrito = [];
 }
 
-// 1. ESCUCHAR CUANDO SE AGREGA UN PRODUCTO AL CARRITO
+// 1. ESCUCHAR CUANDO SE AGREGA UN PRODUCTO AL CARRITO (MÉTODO UNIVERSAL)
 document.addEventListener('click', function(e) {
-    if (e.target && e.target.classList.contains('btn-agregar')) {
+    // Detecta el clic si el elemento tiene la clase 'btn-agregar', el ID 'btn-agregar' o si es un botón dentro de la tarjeta
+    const esBotonAgregar = e.target && (
+        e.target.classList.contains('btn-agregar') || 
+        e.target.id === 'btn-agregar' || 
+        (e.target.tagName === 'BUTTON' && e.target.innerText.toLowerCase().includes('agregar'))
+    );
+
+    if (esBotonAgregar) {
         const contenedor = e.target.closest('.producto-tarjeta'); 
         if (!contenedor) return;
 
-        // Captura el precio desde data-precio o data-price limpia de caracteres
         let precioSucio = contenedor.dataset.precio || contenedor.dataset.price || "0";
         let precioLimpio = precioSucio.replace('$', '').trim();
 
-        // Captura segura de selectores (si no existen en el HTML, coloca "N/A")
         const selectTalla = contenedor.querySelector('.prod-talla');
         const selectColor = contenedor.querySelector('.prod-color');
         const selectPiezas = contenedor.querySelector('.prod-piezas');
