@@ -455,15 +455,18 @@
             });
         });
         
-        document.querySelectorAll('.total-precio').forEach(selector => {
+        document.querySelectorAll('.selector-precio').forEach(selector => {
             selector.addEventListener('change', (e) => {
-                const tarjeta = e.target.closet('.producto-tarjeta');
+                const tarjeta = e.target.closest('.producto-tarjeta');
                 const opcionSeleccionada = e.target.options[e.target.selectIndex];
-                const nuevoPrecio = opcionSeleccionada.dataset.precio;
-                tarjeta.dataset.precio = nuevoPrecio;
-                const precioTxt = tarjetaquerySelector('.producto-precio-visible');
+                const nuevoPrecio = opcionSeleccionada.dataset.price || opcionSeleccionada.dataset.precio;
+
+                if (tarjeta) {
+                    tarjeta.dataset.precio= nuevoPrecio;
+                const precioTxt = tarjeta.querySelector('.producto-precio-visible');
                 if (precioTxt) {
                     precioTxt.innerText = `$${parseFloat(nuevoPrecio).toFixed(2)}`;
+                  }
                 }
             });
         });
