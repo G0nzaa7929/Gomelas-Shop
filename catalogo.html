@@ -254,6 +254,7 @@
          <div class="opcion-grupo">
         <label>Piezas</label>
         <select class="prod-piezas">
+        <option value="panty">Ambos</option>     
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
         </select>
@@ -323,6 +324,7 @@
          <div class="opcion-grupo">
         <label>Piezas</label>
         <select class="prod-piezas">
+        <option value="panty">Ambos</option>
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
         </select>
@@ -361,6 +363,7 @@
          <div class="opcion-grupo">
         <label>Piezas</label>
         <select class="prod-piezas">
+        <option value="panty">Ambos</option>
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
         </select>
@@ -399,6 +402,7 @@
          <div class="opcion-grupo">
         <label>Piezas</label>
         <select class="prod-piezas">
+        <option value="panty">Ambos</option>
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
         </select>
@@ -481,6 +485,7 @@ document.addEventListener('click', function(e) {
 
         carrito.push(producto);
         alert(`✨ ${producto.nombre} agregado al carrito con éxito`);
+        actualizarTotalPagina();
     }
 });
 
@@ -544,6 +549,24 @@ document.addEventListener('click', function(e) {
         enviarPedidoWhatsapp();
     }
 });
+
+        // FUNCIÓN PARA ACTUALIZAR EL TOTAL VISIBLE EN LA INTERFAZ DE LA PÁGINA
+function actualizarTotalPagina() {
+    let total = 0;
+    carrito.forEach(data => {
+        total += parseFloat(data.precio) * (data.cantidad || 1);
+    });
+    
+    // El script busca las formas más comunes en que pudiste nombrar el total en tu HTML
+    const elementoTotal = document.querySelector('.total-carrito') || 
+                          document.querySelector('.monto-total') || 
+                          document.getElementById('total-precio') ||
+                          document.querySelector('.precio-total');
+                          
+    if (elementoTotal) {
+        elementoTotal.innerText = `$${total.toFixed(2)}`;
+    }
+}
     </script>
               
 
