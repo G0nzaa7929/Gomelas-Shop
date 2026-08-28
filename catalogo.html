@@ -444,72 +444,101 @@
     
     <script>
         
-        document.querySelectorAll('.btn-agregar').forEach(boton=> {
-            boton.addEvenListener('click',(e) => {
-                const contenedor = e.target.closest('.producto-tarjeta');
-                let precioSucio = contenedor.dataset.price || contenedor.dataset.precio || "0";
-                let precioLimpio = precioSucio.replace('$' , '').trim();
-                const producto = {
-                    id: contenedor.dataset.id,
-                    nombre: contenedor.dataset.nombre,
-                    talla: contenedor.querySelector('.prod-talla').value,
-                    color: contenedor.querySelector('.prod-color').value,
-                    piezas: contenedor.querySelector('.prod-piezas').value,
-                    precio: parseFloat(precioLimpio) || 0,
-                    cantidad: 1
-                };
-                carrito.push(producto);
-                alert(`El ${producto.nombre} fue agregador al carrito`);
-            });
-        });
-        
-        document.querySelectorAll('.selector-precio').forEach(selector => {
-            selector.addEventListener('change', (e) => {
-                const tarjeta = e.target.closest('.producto-tarjeta');
-                const opcionSeleccionada = e.target.options[e.target.selectIndex];
-                
-                let nuevoPrecioSucio = opcionSeleccionada.dataset.precio || opcionSeleccionada.dataset.price;
-                if (tarjeta && nuevoPrecioSucio) {
-                    let nuevoPrecioLimpio = nuevoPrecioSucio.replace('$', '').trim();
-                    tarjeta.dataset.precio = nuevoPreciolimpio;
-                    tarjeta.dataset.price = nuevoPrecioLimpio;
-                const precioTxt = tarjeta.querySelector('.producto-precio-visible');
-                if (precioTxt) {
-                    precioTxt.innerText = `$${parseFloat(nuevoPrecioLimpio).toFixed(2)}`;
-                  }
-                }
-            });
-        });
-        
-               function enviarPedidoWhatsapp() {
-                   const telefonoWhatsapp= "584244292903";
-                   let mensaje = "¡Hola Gomelas Shop!, Quiero realizar el siguiente pedido de lenceria:\n\n";
-                   let totalCompra = 0;
-                   
-                   carrito.forEach((data, index) => {
-                       const precioUnitario = data.precio || 0;
-                       const subtotal = precioUnitario*data.cantidad;
-                       totalCompra += subtotal;
-                       mensaje += `*${index+1}. ${data.nombre}*\n`;
-                       mensaje += ` •Talla: ${data.talla}\n`; 
-                       mensaje += ` •Color: ${data.color}\n`; 
-                       mensaje += ` •Estilo: ${data.piezas}\n`; 
-                       mensaje += ` •Cantidad: ${data.cantidad}\n`;
-                       mensaje += ` •Precio: $${precioUnitario.toFixed(2)}\n\n`;
-        });
-                   mensaje += `*Total del Pedido:* $${totalCompra.toFixed(2)}\n\n`;
-                   mensaje += "¿Me indican los metodos de pago y disponibilidad?";
+       // Aseguramos que el carrito exista globalmente una sola vez
+if (typeof carrito === 'undefined') {
+    var carrito = [];
+}
 
-                   const mensajeUrl = encodeURIComponent(mensaje);
-                   const urlWhatsapp = `https://wa.me/584244292903?text=${mensajeUrl}`;
+// 1. ESCUCHAR CUANDO SE AGREGA UN PRODUCTO AL CARRITO
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('btn-agregar')) {
+        const contenedor = e.target.closest('.producto-tarjeta'); 
+        if (!contenedor) return;
 
-                   window.open(urlWhatsapp, '_blank');
+        // Captura el precio desde data-precio o data-price limpia de caracteres
+        let precioSucio = contenedor.dataset.precio || contenedor.dataset.price || "0";
+        let precioLimpio = precioSucio.replace('$', '').trim();
+
+        // Captura segura de selectores (si no existen en el HTML, coloca "N/A")
+        const selectTalla = contenedor.querySelector('.prod-talla');
+        const selectColor = contenedor.querySelector('.prod-color');
+        const selectPiezas = contenedor.querySelector('.prod-piezas');
+
+        const producto = {
+            id: contenedor.dataset.id || "0",
+            nombre: contenedor.dataset.nombre || "Producto",
+            talla: selectTalla ? selectTalla.value : "N/A",
+            color: selectColor ? selectColor.value : "N/A",
+            piezas: selectPiezas ? selectPiezas.value : "N/A",
+            precio: parseFloat(precioLimpio) || 0,
+            cantidad: 1
+        };
+
+        carrito.push(producto);
+        alert(`✨ ${producto.nombre} agregado al carrito con éxito`);
+    }
+});
+
+// 2. ACTUALIZAR PRECIO EN PANTALLA AL CAMBIAR DE TALLA (BRASIER)
+document.addEventListener('change', function(e) {
+    if (e.target && e.target.classList.contains('selector-precio')) {
+        const tarjeta = e.target.closest('.producto-tarjeta');
+        const opcionSeleccionada = e.target.options[e.target.selectedIndex];
+        
+        let nuevoPrecioSucio = opcionSeleccionada.dataset.precio || opcionSeleccionada.dataset.price;
+        if (tarjeta && nuevoPrecioSucio) {
+            let nuevoPrecioLimpio = nuevoPrecioSucio.replace('$', '').trim();
+            
+            tarjeta.dataset.precio = nuevoPrecioLimpio;
+            tarjeta.dataset.price = nuevoPrecioLimpio;
+            
+            const precioTxt = tarjeta.querySelector('.producto-precio-visible');
+            if (precioTxt) {
+                precioTxt.innerText = `$${parseFloat(nuevoPrecioLimpio).toFixed(2)}`;
+            }
         }
-                  const btnPagar = document.querySelector('.btn-pagar') || document.getElementById('btn-pagar');
-                   if (btnPagar) {
-                       btnPagar.addEventListener('click', enviarPedidoWhatsapp);
-        }
+    }
+});
+
+// 3. ENVIAR EL PEDIDO DETALLADO Y SUMADO A WHATSAPP
+function enviarPedidoWhatsapp() {
+    const telefonoWhatsapp = "584244292903";
+    let mensaje = "¡Hola Gomelas Shop! Quiero realizar el siguiente pedido de lencería:\n\n";
+    let totalCompra = 0;
     
+    if (carrito.length === 0) {
+        alert("⚠️ Tu carrito está vacío. Agrega algunos productos antes de pagar.");
+        return;
+    }
+    
+    carrito.forEach((data, index) => {
+        const precioUnitario = data.precio || 0; 
+        const subtotal = precioUnitario * data.cantidad;
+        totalCompra += subtotal;
+
+        mensaje += `*${index + 1}. ${data.nombre}*\n`;
+        if (data.talla !== "N/A") mensaje += `  • Talla: ${data.talla}\n`;
+        if (data.color !== "N/A") mensaje += `  • Color: ${data.color}\n`;
+        if (data.piezas !== "N/A") mensaje += `  • Estilo: ${data.piezas}\n`;
+        mensaje += `  • Cantidad: ${data.cantidad}\n`;
+        mensaje += `  • Precio: $${precioUnitario.toFixed(2)}\n\n`;
+    });
+
+    mensaje += `💰 *Total del Pedido:* $${totalCompra.toFixed(2)}\n\n`;
+    mensaje += "¿Me indican los métodos de pago y disponibilidad?";
+
+    const mensajeUrl = encodeURIComponent(mensaje);
+    const urlWhatsapp = `https://wa.me/584244292903?text=${mensajeUrl}`;
+
+    window.open(urlWhatsapp, '_blank');
+}
+
+// 4. ESCUCHAR EL BOTÓN DE PAGO FINAL
+document.addEventListener('click', function(e) {
+    if (e.target && (e.target.id === 'btn-pagar' || e.target.classList.contains('btn-pagar'))) {
+        enviarPedidoWhatsapp();
+    }
+});
     </script>
               
 
