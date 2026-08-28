@@ -218,10 +218,10 @@
 </div>
 
 <!-- Sección de la tienda -->
-<div class="productos-contenedor">
+<div class="productos-contenedor"></div>
 
     <!-- Producto 1 -->
-    <div class="producto-tarjeta" data-id="1" data-nombre="Set Eva" data-precio="12">
+    <div class="producto-tarjeta" data-id="1" data-nombre="Set Eva" data-precio="12"></div>
         <img src="imagenes/cucos/prenda1.jpg">
         <h3>Set Eva</h3>
         <div class="precio">$12</div>
@@ -253,10 +253,12 @@
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
         </select>
-    </div>
+             
+    <button class="btn-agg">Agragar al carrito</button>
+              </div>
             
     <!-- Producto 2 -->
-    <div class="producto-tarjeta" data-id="2" data-nombre="Set coquete" data-precio="15">
+    <div class="producto-tarjeta" data-id="2" data-nombre="Set coquete" data-precio="15"></div>
         <img src="imagenes/cucos/prenda2.jpg">
         <h3>Set coquete</h3>
         <div class="precio">$15</div>
@@ -281,10 +283,11 @@
          <option value="negro">Negro</option>
          <option value="personalizado">Personalizado</option>
          </select>
-                 </div>
+                 <button class="btn-agg">Agragar al carrito</button>
+              </div>
         
     <!-- Producto 3 -->
-    <div class="tarjeta-producto" data-id="3" data-nombre="Set Ella" data-precio="12">
+    <div class="tarjeta-producto" data-id="3" data-nombre="Set Ella" data-precio="12"></div>
         <img src="imagenes/cucos/prenda3.jpg">
         <h3>Set Ella</h3>
         <div class="precio">$12</div>
@@ -316,9 +319,10 @@
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
         </select>
+              <button class="btn-agg">Agragar al carrito</button>
     </div>
 
-      <div class="tarjeta-producto" data-id="4" data-nombre="Set Honey" data-precio="12">
+      <div class="tarjeta-producto" data-id="4" data-nombre="Set Honey" data-precio="12"></div>
         <img src="imagenes/cucos/prenda1.jpg">
         <h3>Set Honey</h3>
         <div class="precio">$12</div>
@@ -350,9 +354,10 @@
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
         </select>
+                   <button class="btn-agg">Agragar al carrito</button>
       </div>
 
-              <div class="tarjeta-producto" data-id="5" data-nombre="Set Dina" data-precio="12">
+              <div class="tarjeta-producto" data-id="5" data-nombre="Set Dina" data-precio="12"></div>
         <img src="imagenes/cucos/prenda1.jpg">
         <h3>Set Dina</h3>
         <div class="precio">$12</div>
@@ -383,21 +388,23 @@
         <select class="producto-piezas">
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
-        </select>
+        </select> 
+               <button class="btn-agg">Agragar al carrito</button>
               </div>
 
-              <div class="tarjeta-producto" data-id="6" data-nombre="Set Eva" data-precio="5">
+              <div class="tarjeta-producto" data-id="6" data-nombre="bralett" data-precio="5"></div>
         <img src="imagenes/cucos/prenda1.jpg">
         <h3>Bralett</h3>
+                  <p class="producto-precio-visible">"$5"</p>
         <div class="precio">$5,6,7</div>
          <div class="opcion-grupo">
              
         <label>Tallas</label>
         <select class="producto-talla">
-            <option value="32">32</option>
-            <option value="34">34</option>
-            <option value="36">36</option>
-            <option value="38">38</option>
+            <option value="32" data-precio="5">32 - $5</option>
+            <option value="34" data-precio="6">34 - $6</option>
+            <option value="36" data-precio="7">36 - $7</option>
+            <option value="38" data-precio="7">38 - $7</option>
         </select>
          </div>
 
@@ -414,6 +421,7 @@
                 
  <button class="btn-agg">Agragar al carrito</button>
               </div>
+                  
                   <div id="carrito-flotante" class="carrito-contenedor">
                       <h3>Tu carrito (Gomelas Shop)</h3>
                       <ul id="lista-carrito">
@@ -423,8 +431,7 @@
                       </div>
                       <button id="btn-pagar" class="btn-pagar">Pedir por Whatsapp</button>
                   </div>
-              </div>
-      </div>
+            
     <script>
         let carrito= [];
         document.querySelectorAll('btn-agregar').forEach(boton=> {
@@ -442,9 +449,23 @@
                 alert(`${producto-nombre} agregador al carrito`);
             });
         });
+        
+        document.querySelectorAll('.selector-precio').forEach(selector => {
+            selector.addEventListener('change', (e) => {
+                const tarjeta = e.target.closet('producto-tarjeta')
+                const opcionSeleccionada = e.target.options[e.target.selectIndex];
+                const nuevoPrecio = opcionSeleccionada.dataset.precio;
+                tarjeta.dataset.precio = nuevoPrecio;
+                const precioTxt = tarjetaquerySelector('.producto-precio-visible');
+                if (precioTxt) {
+                    precioTxt.innerText = `$${parseFloat(nuevoPrecio).toFixed(2)}`;
+                }
+            });
+        });
+        
                function enviarPedidoWhatsapp() {
-                   const telefonoEmpresa= "584244292903"
-                   let mensaje= "¡Hola Gomelas Shop!, Quiero relaizar el siguiente pedido de lenceria:\n\n";
+                   const telefonoWhatsapp= "584244292903"
+                   let mensaje= "¡Hola Gomelas Shop!, Quiero realizar el siguiente pedido de lenceria:\n\n";
                    carrito.forEach((item, index) => {
                        mensaje += `*${index+1}. ${item.nombre}*\n`;
                        mensaje += ` •Talla: ${item.talla}\n`; 
@@ -455,10 +476,10 @@
                    mensaje +="¿Me indican los metodos de pago y disponibilidad?";
 
                    const mensajeUrl = encodeURIComponent(mensaje)
-                   const urlWhatsapp = `https://wa.me{584244292903}?text=${mensajeUrl}`;
+                   const urlWhatsapp = `https://wa.me/584244292903?text=${mensajeUrl}`;
 
                    window.open(urlWhatsapp, '_blank')
-                   document.getElementById('btn-pagar').addEvenListener('click', enviarPedidoWhatsapp)
+                   document.getElementById('btn-pagar').addEventListener('click', enviarPedidoWhatsapp)
     </script>
               
 
