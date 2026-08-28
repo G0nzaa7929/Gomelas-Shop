@@ -442,7 +442,8 @@
         document.querySelectorAll('.btn-agregar').forEach(boton=> {
             boton.addEvenListener('click',(e) => {
                 const contenedor = e.target.closest('.producto');
-                const precio = contenedor.dataset.price || contenedor.dataset.precio || "0";
+                let precioSucio = contenedor.dataset.price || contenedor.dataset.precio || "0";
+                let precioLimpio = precioSucio.replace('$' , '').trim();
                 const producto = {
                     id: contenedor.dataset.id,
                     nombre: contenedor.dataset.nombre,
@@ -453,7 +454,7 @@
                     cantidad: 1
                 };
                 carrito.push(producto);
-                alert(`${producto.nombre} agregador al carrito`);
+                alert(`El ${producto.nombre} fue agregador al carrito`);
             });
         });
         
@@ -461,14 +462,15 @@
             selector.addEventListener('change', (e) => {
                 const tarjeta = e.target.closest('.producto-tarjeta');
                 const opcionSeleccionada = e.target.options[e.target.selectIndex];
-                const nuevoPrecio = opcionSeleccionada.dataset.price || opcionSeleccionada.dataset.precio;
-
-                if (tarjeta && nuevoPrecio) {
-                    tarjeta.dataset.precio = nuevoPrecio;
-                    tarjeta.dataset.price = nuevoPrecio;
+                
+                let nuevoPrecioSucio = opcionSeleccionada.dataset.precio || opcionSeleccionada.dataset.price;
+                if (tarjeta && nuevoPrecioSucio) {
+                    let nuevoPrecioLimpio = nuevoPrecioSucio.replace('$', '').trim();
+                    tarjeta.dataset.precio = nuevoPreciolimpio;
+                    tarjeta.dataset.price = nuevoPrecioLimpio;
                 const precioTxt = tarjeta.querySelector('.producto-precio-visible');
                 if (precioTxt) {
-                    precioTxt.innerText = `$${parseFloat(nuevoPrecio).toFixed(2)}`;
+                    precioTxt.innerText = `$${parseFloat(nuevoPrecioLimpio).toFixed(2)}`;
                   }
                 }
             });
@@ -476,15 +478,22 @@
         
                function enviarPedidoWhatsapp() {
                    const telefonoWhatsapp= "584244292903";
-                   let mensaje= "¡Hola Gomelas Shop!, Quiero realizar el siguiente pedido de lenceria:\n\n";
+                   let mensaje = "¡Hola Gomelas Shop!, Quiero realizar el siguiente pedido de lenceria:\n\n";
+                   let totalCompra = 0;
+                   
                    carrito.forEach((data, index) => {
+                       const precioUnitario = data.precio || 0;
+                       const subtotal = precioUnitario*data.cantidad;
+                       totalCompra += subtotal;
                        mensaje += `*${index+1}. ${data.nombre}*\n`;
                        mensaje += ` •Talla: ${data.talla}\n`; 
                        mensaje += ` •Color: ${data.color}\n`; 
                        mensaje += ` •Estilo: ${data.piezas}\n`; 
-                       mensaje += ` •Cantidad: ${data.cantidad}\n\n`;
+                       mensaje += ` •Cantidad: ${data.cantidad}\n`;
+                       mensaje += ` •Precio: $${precioUnitario.toFixed(2)}\n\n`;
         });
-                   mensaje +="¿Me indican los metodos de pago y disponibilidad?";
+                   mensaje += `*Total del Pedido:* $${totalCompra.toFixed(2)}\n\n`;
+                   mensaje += "¿Me indican los metodos de pago y disponibilidad?";
 
                    const mensajeUrl = encodeURIComponent(mensaje);
                    const urlWhatsapp = `https://wa.me/584244292903?text=${mensajeUrl}`;
