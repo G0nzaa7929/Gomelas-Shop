@@ -225,7 +225,7 @@
 <div class="productos-contenedor">
 
     <!-- Producto 1 -->
-    <div class="producto-tarjeta" data-id="1" data-nombre="Set Eva" data-precio="12"></div>
+    <div class="producto-tarjeta" data-id="1" data-nombre="Set Eva" data-precio="12">
         <img src="imagenes/cucos/prenda1.jpg">
         <h3>Set Eva</h3>
         <div class="precio">$12</div>
@@ -257,12 +257,11 @@
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
         </select>
-             
+          </div>
     <button class="btn-agg">Agragar al carrito</button>
               </div>
-            
     <!-- Producto 2 -->
-    <div class="producto-tarjeta" data-id="2" data-nombre="Set coquete" data-precio="15"></div>
+    <div class="producto-tarjeta" data-id="2" data-nombre="Set coquete" data-precio="15">
         <img src="imagenes/cucos/prenda2.jpg">
         <h3>Set coquete</h3>
         <div class="precio">$15</div>
@@ -287,11 +286,12 @@
          <option value="negro">Negro</option>
          <option value="personalizado">Personalizado</option>
          </select>
+                </div>
                  <button class="btn-agg">Agragar al carrito</button>
-              </div>
+        </div>
         
     <!-- Producto 3 -->
-    <div class="tarjeta-producto" data-id="3" data-nombre="Set Ella" data-precio="12"></div>
+    <div class="tarjeta-producto" data-id="3" data-nombre="Set Ella" data-precio="12">
         <img src="imagenes/cucos/prenda3.jpg">
         <h3>Set Ella</h3>
         <div class="precio">$12</div>
@@ -323,10 +323,11 @@
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
         </select>
+         </div>
               <button class="btn-agg">Agragar al carrito</button>
     </div>
 
-      <div class="tarjeta-producto" data-id="4" data-nombre="Set Honey" data-precio="12"></div>
+      <div class="tarjeta-producto" data-id="4" data-nombre="Set Honey" data-precio="12">
         <img src="imagenes/cucos/prenda1.jpg">
         <h3>Set Honey</h3>
         <div class="precio">$12</div>
@@ -358,10 +359,11 @@
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
         </select>
+              </div>
                    <button class="btn-agg">Agragar al carrito</button>
       </div>
 
-              <div class="tarjeta-producto" data-id="5" data-nombre="Set Dina" data-precio="12"></div>
+              <div class="tarjeta-producto" data-id="5" data-nombre="Set Dina" data-precio="12">
         <img src="imagenes/cucos/prenda1.jpg">
         <h3>Set Dina</h3>
         <div class="precio">$12</div>
@@ -393,10 +395,11 @@
         <option value="panty">Panty</option>
         <option value="bra">Bra</option>
         </select> 
+           </div>
                <button class="btn-agg">Agragar al carrito</button>
               </div>
 
-              <div class="tarjeta-producto" data-id="6" data-nombre="bralett" data-precio="5"></div>
+              <div class="tarjeta-producto" data-id="6" data-nombre="bralett" data-precio="5">
         <img src="imagenes/cucos/prenda1.jpg">
         <h3>Bralett</h3>
                   <p class="producto-precio-visible">"$5"</p>
@@ -434,14 +437,13 @@
                       </div>
                       <button id="btn-pagar" class="btn-pagar">Pedir por Whatsapp</button>
                   </div>
-            </div>
+    </div>
     
     <script>
         
-        let carrito= [];
         document.querySelectorAll('.btn-agregar').forEach(boton=> {
             boton.addEvenListener('click',(e) => {
-                const contenedor = e.target.closest('.producto');
+                const contenedor = e.target.closest('.producto-tarjeta');
                 let precioSucio = contenedor.dataset.price || contenedor.dataset.precio || "0";
                 let precioLimpio = precioSucio.replace('$' , '').trim();
                 const producto = {
@@ -450,7 +452,7 @@
                     talla: contenedor.querySelector('.prod-talla').value,
                     color: contenedor.querySelector('.prod-color').value,
                     piezas: contenedor.querySelector('.prod-piezas').value,
-                    precio: parseFloat(precio),
+                    precio: parseFloat(precioLimpio) || 0,
                     cantidad: 1
                 };
                 carrito.push(producto);
