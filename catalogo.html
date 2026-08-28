@@ -466,7 +466,7 @@
         });
         
                function enviarPedidoWhatsapp() {
-                   const telefonoWhatsapp= "584244292903"
+                   const telefonoWhatsapp= "584244292903";
                    let mensaje= "¡Hola Gomelas Shop!, Quiero realizar el siguiente pedido de lenceria:\n\n";
                    carrito.forEach((item, index) => {
                        mensaje += `*${index+1}. ${item.nombre}*\n`;
@@ -478,10 +478,12 @@
                    mensaje +="¿Me indican los metodos de pago y disponibilidad?";
 
                    const mensajeUrl = encodeURIComponent(mensaje)
-                   const urlWhatsapp = `https://wa.me/584244292903?text=$ {mensajeUrl}`;
+                   const urlWhatsapp = `https://wa.me/584244292903?text=${mensajeUrl}`;
 
                    window.open(urlWhatsapp, '_blank')
-                   document.getElementById('btn-pagar').addEventListener('click', enviarPedidoWhatsapp)
+        }
+                   document.getElementById('btn-pagar').addEventListener('click', enviarPedidoWhatsapp);
+    
     </script>
               
 
