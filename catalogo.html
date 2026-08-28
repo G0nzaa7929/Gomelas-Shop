@@ -442,12 +442,14 @@
         document.querySelectorAll('.btn-agregar').forEach(boton=> {
             boton.addEvenListener('click',(e) => {
                 const contenedor = e.target.closest('.producto');
+                const precio = contenedor.dataset.price || contenedor.dataset.precio || "0";
                 const producto = {
                     id: contenedor.dataset.id,
                     nombre: contenedor.dataset.nombre,
                     talla: contenedor.querySelector('.prod-talla').value,
                     color: contenedor.querySelector('.prod-color').value,
                     piezas: contenedor.querySelector('.prod-piezas').value,
+                    precio: parseFloat(precio),
                     cantidad: 1
                 };
                 carrito.push(producto);
@@ -461,8 +463,9 @@
                 const opcionSeleccionada = e.target.options[e.target.selectIndex];
                 const nuevoPrecio = opcionSeleccionada.dataset.price || opcionSeleccionada.dataset.precio;
 
-                if (tarjeta) {
-                    tarjeta.dataset.precio= nuevoPrecio;
+                if (tarjeta && nuevoPrecio) {
+                    tarjeta.dataset.precio = nuevoPrecio;
+                    tarjeta.dataset.price = nuevoPrecio;
                 const precioTxt = tarjeta.querySelector('.producto-precio-visible');
                 if (precioTxt) {
                     precioTxt.innerText = `$${parseFloat(nuevoPrecio).toFixed(2)}`;
@@ -488,7 +491,10 @@
 
                    window.open(urlWhatsapp, '_blank');
         }
-                   document.getElementById('.btn-pagar').addEventListener('click', enviarPedidoWhatsapp);
+                  const btnPagar = document.querySelector('.btn-pagar') || document.getElementById('btn-pagar');
+                   if (btn-pagar) {
+                       btnPagar.addEventListener('click', enviarPedidoWhatsapp);
+        }
     
     </script>
               
