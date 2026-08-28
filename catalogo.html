@@ -57,12 +57,13 @@
 
      /* Contenedor general de productos */
 .productos-contenedor {
-    display: grid;
-    grid-template-columns: repeat(autofit, minmax(280px, 1fr));
+    display: grid !important;
+    grid-template-columns: repeat(autofit, minmax(280px, 1fr)) !important;
     gap: 30px;
     padding: 30px;;
     max-width: 1200px;
     margin: 0 auto;
+    box-sizing: border-box !important
 }
 
 /* Tarjeta de Producto Corregida */
@@ -75,10 +76,11 @@
     box-shadow: 0 4px 10px rgba(255, 189, 248, 0.15);
     
     /* ESTO ES LO CLAVE: Organiza todo en vertical y empuja el botón abajo */
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.3s ease;
+    box-sizing: border-box !important;
 }
         .producto-tarjeta:hover {
             tarnsform: translateY(-5px);
@@ -218,7 +220,7 @@
 </div>
 
 <!-- Sección de la tienda -->
-<div class="productos-contenedor"></div>
+<div class="productos-contenedor">
 
     <!-- Producto 1 -->
     <div class="producto-tarjeta" data-id="1" data-nombre="Set Eva" data-precio="12"></div>
@@ -431,7 +433,7 @@
                       </div>
                       <button id="btn-pagar" class="btn-pagar">Pedir por Whatsapp</button>
                   </div>
-            
+            </div>
     <script>
         let carrito= [];
         document.querySelectorAll('btn-agregar').forEach(boton=> {
@@ -440,9 +442,9 @@
                 const producto = {
                     id: contenedor.dataset.id,
                     nombre: contenedor.dataset.nombre,
-                    talla: contenedor.querySelector('producto-talla').value,
-                    color: contenedor.querySelector('producto-color').value,
-                    piezas: contenedor.querySelector('producto-piezas').value,
+                    talla: contenedor.querySelector('.prod-talla').value,
+                    color: contenedor.querySelector('.prod-color').value,
+                    piezas: contenedor.querySelector('.prod-piezas').value,
                     cantidad: 1
                 };
                 carrito.push(producto);
