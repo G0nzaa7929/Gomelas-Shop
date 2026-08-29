@@ -488,18 +488,43 @@ function enviarPedidoWhatsapp() {
         alert("⚠️ Tu carrito está vacío. Agrega algunos productos antes de pagar.");
         return;
     }
-    
-    carrito.forEach((data, index) => {
-        const precioUnitario = data.precio || 0; 
-        const subtotal = precioUnitario * data.cantidad;
-        totalCompra += subtotal;
+     
+   // 1. Agrupamos los productos repetidos
+const productosAgrupados = {};
 
-        mensaje += `*${index + 1}. ${data.nombre}*\n`;
-        if (data.talla !== "N/A") mensaje += `  • Talla: ${data.talla}\n`;
-        if (data.color !== "N/A") mensaje += `  • Color: ${data.color}\n`;
-        mensaje += `  • Cantidad: ${data.cantidad}\n`;
-        mensaje += `  • Precio: $${precioUnitario.toFixed(2)}\n\n`;
-    });
+carrito.forEach((data) => {
+    const claveUnica = `${data.nombre}-${data.talla}-${data.color}`;
+    const cantidadItem = parseInt(data.cantidad) || 1;
+
+    if (productosAgrupados[claveUnica]) {
+        productosAgrupados[claveUnica].cantidad += cantidadItem;
+    } else {
+        productosAgrupados[claveUnica] = {
+            nombre: data.nombre,
+            talla: data.talla,
+            color: data.color,
+            precio: data.precio || 0,
+            cantidad: cantidadItem
+        };
+    }
+});
+
+// 2. Armamos el mensaje final con la lista limpia
+let index = 1;
+
+Object.values(productosAgrupados).forEach((data) => {
+    const precioUnitario = data.precio; 
+    const subtotal = precioUnitario * data.cantidad;
+    totalCompra += subtotal;
+
+    mensaje += `*${index}. ${data.nombre}*\n`;
+    if (data.talla !== "N/A" && data.talla) mensaje += `  • Talla: ${data.talla}\n`;
+    if (data.color !== "N/A" && data.color) mensaje += `  • Color: ${data.color}\n`;
+    mensaje += `  • Cantidad: ${data.cantidad}\n`;
+    mensaje += `  • Precio: $${subtotal.toFixed(2)}\n\n`;
+
+    index++;
+});
 
     mensaje += `💰 *Total del Pedido:* $${totalCompra.toFixed(2)}\n\n`;
     mensaje += "¿Me indican los métodos de pago y disponibilidad?";
