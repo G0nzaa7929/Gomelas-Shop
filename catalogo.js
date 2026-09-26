@@ -155,7 +155,7 @@ function enviarPedidoWhatsapp() {
     const mensajeUrl = encodeURIComponent(mensaje);
     
     // Generamos el enlace universal que abre tanto en PC como en móviles
-    const urlWhatsapp = `https://whatsapp.com{telefonoWhatsapp}&text=${mensajeUrl}`;
+    const urlWhatsapp = `https://whatsapp.com/584244292903&text=${mensajeUrl}`;
     
     // Abrimos WhatsApp en una pestaña nueva
     window.open(urlWhatsapp, '_blank');
