@@ -1,0 +1,300 @@
+body {
+            background-color: #FFBDF8;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333333;
+        }
+
+        .encabezado {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .encabezado h1 {
+            font-family: "Dancing Script", cursive;
+            color: #000000;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
+            margin-bottom: 10px;
+        }
+
+        /* Botón elegante para regresar a la página principal */
+        .btn-regresar-top {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #ffffff;
+            color: #FFBDF8;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .btn-regresar-top:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contenedor general de productos */
+        .productos-contenedor {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center;
+            gap: 35px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-sizing: border-box !important;
+        }
+
+        /* ========================================================
+           NUEVOS ESTILOS PARA EL GIRO 3D (MANTIENE TUS DISEÑOS)
+           ======================================================== */
+
+        /* 1. Modificamos tu .producto-tarjeta para que sea el contenedor 3D */
+        .producto-tarjeta {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            width: 100%;
+            max-width: 280px;
+            height: 450px; /* Altura fija para que la tarjeta no colapse al girar */
+            perspective: 1000px; /* Efecto de profundidad */
+            margin: 0 auto !important;
+            box-sizing: border-box !important;
+        }
+
+        /* 2. La caja intermedia que agregaste a mano y que va a rotar */
+        .tarjeta-interna {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        /* Esta clase la activa el JavaScript al presionar tu botón .btn-agg */
+        .tarjeta-interna.volteada {
+            transform: rotateY(180deg);
+        }
+
+        /* 3. Propiedades comunes para ambas caras */
+        .tarjeta-frente, .tarjeta-atras {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Oculta la espalda mientras gira */
+            backface-visibility: hidden;
+            background: #ffffff;
+            border: 1px solid #ffdcfb;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(255, 189, 248, 0.15);
+            display: flex !important;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box !important;
+        }
+
+        /* Tu efecto hover original aplicado únicamente al frente */
+        .tarjeta-frente:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(255, 189, 240, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* 4. CARA TRASERA: Fondo rosa pastel suave con letras de tu marca */
+        .tarjeta-atras {
+            background-color: #fff2fc; /* Rosa sutil */
+            border: 2px solid #FFBDF8;
+            transform: rotateY(180deg); /* Se inicializa volteada en el espacio 3D */
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ========================================================
+           TUS ESTILOS ORIGINALES DE CONTENIDO (MANTENIDOS INTACTOS)
+           ======================================================== */
+
+        .producto-imagen {
+            width: 100% !important;
+            max-width: 120px !important;
+            height: 120px !important;
+            object-fit: cover !important; 
+            margin: 0 auto 10px auto !important;
+            border-radius: 8px;
+        }
+
+        .producto-titulo {
+            font-size: 1.1rem;
+            margin: 10px 0 5px 0;
+            color: #333333;
+        }
+
+        /* Unificamos tus clases de precio */
+        .precio, .producto-precio {
+            font-weight: bold;
+            color: #cc60c3; /* Tono rosa oscuro legible */
+            margin-bottom: 10px;
+        }
+
+        /* Contenedor de Selectores (Talla, Color) */
+        .producto-opciones {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .opcion-grupo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+
+        .opcion-grupo label {
+            font-size: 0.9rem;
+            color: #555555;
+        }
+
+        .opcion-grupo select {
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid #ffbdf8;
+            background-color: #fff8fe;
+            width: 65%;
+            font-size: 0.85rem;
+            color: #333333;
+        }
+
+        .opcion-grupo select:focus {
+            outline: none;
+            border-color: #cc60c3;
+        }
+
+        /* Tu botón .btn-agg adaptado para que ocupe todo el ancho */
+        .btn-agg {
+            background-color: #FFBDF8;
+            color: #4a1543; 
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            font-size: 14px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .btn-agg:hover {
+            background-color: #ffa3f5; 
+            transform: translateY(-2px); 
+        }
+
+        /* ========================================================
+           ELEMENTOS DE LA CARA TRASERA (ÉXITO)
+           ======================================================== */
+
+        .contenido-exito {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .icono-check {
+            width: 65px;
+            height: 65px;
+            fill: #cc60c3; /* Mismo fucsia de tus precios */
+            margin-bottom: 15px;
+            animation: popIn 0.4s 0.2s both ease-out;
+        }
+
+        .contenido-exito h3 {
+            color: #4a1543;
+            margin: 5px 0;
+            font-size: 1.2rem;
+        }
+
+        .contenido-exito p {
+            font-size: 0.9rem;
+            color: #666666;
+            margin-bottom: 15px;
+        }
+
+        /* Botón para regresar al frente la tarjeta */
+        .btn-regresar {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #cc60c3;
+            border: 1px solid #FFBDF8;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .btn-regresar:hover {
+            transform: scale(1.05);
+        }
+
+        /* Sección del Carrito */
+        .carrito-contenedor {
+            background: #fff5fe; 
+            border: 2px solid #FFBDF8;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(255, 189, 248, 0.2);
+        }
+
+        .carrito-contenedor h3 {
+            color: #4a1543;
+            margin-top: 0;
+            border-bottom: 2px solid #FFBDF8;
+            padding-bottom: 8px;
+        }
+
+        #lista-carrito li {
+            font-size: 0.95rem;
+            color: #333333;
+            border-bottom: 1px dashed #ffdcfb;
+            padding-bottom: 8px;
+        }
+
+        .carrito-total {
+            padding-top: 10px;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            text-align: right;
+            color: #4a1543;
+        }
+
+        /* Botón Negro de WhatsApp */
+        .btn-pagar {
+            background-color: #1A1A1A; 
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .btn-pagar:hover {
+            background-color: #333333;
+            transform: translateY(-2px);
+        }
