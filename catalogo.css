@@ -123,9 +123,13 @@ body {
             width: 100% !important;
             max-width: 120px !important;
             height: 120px !important;
-            object-fit: cover !important; 
+            object-fit: contain !important; 
             margin: 0 auto 10px auto !important;
             border-radius: 8px;
+            image-rendering:   -webkit-optimize-contrast !important; 
+    image-rendering: crisp-edges !important; 
+    image-rendering: pixelated !important;
+
         }
 
         .producto-titulo {
