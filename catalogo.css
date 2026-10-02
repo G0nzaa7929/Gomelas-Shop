@@ -120,17 +120,18 @@ body {
            ======================================================== */
 
         .producto-imagen {
-            width: 100% !important;
-            max-width: 120px !important;
-            height: 120px !important;
-            object-fit: contain !important; 
-            margin: 0 auto 10px auto !important;
-            border-radius: 8px;
-            image-rendering:   -webkit-optimize-contrast !important; 
-    image-rendering: crisp-edges !important; 
-    image-rendering: pixelated !important;
+    width: 100% !important;
+    max-width: 120px !important;
+    height: 120px !important;
+    
+    object-fit: cover !important; 
+    object-position: center !important;
+    
+    margin: 0 auto 10px auto ! important;
 
-        }
+    border-radius: 8px;
+    image-rendering: auto !important; 
+}
 
         .producto-titulo {
             font-size: 1.1rem;
