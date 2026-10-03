@@ -41,7 +41,7 @@ body {
             display: flex !important;
             flex-direction: column !important;
             align-items: center;
-            gap: 45px !important;
+            gap: 40px !important;
             padding: 20px;
             max-width: 600px;
             margin: 0 auto;
@@ -60,7 +60,7 @@ body {
             padding: 0 !important;
             width: 100%;
             max-width: 320px;
-            height: 500px !important; /* Altura fija para que la tarjeta no colapse al girar */
+            height: 495px !important; /* Altura fija para que la tarjeta no colapse al girar */
             overflow: visible !important;
             perspective: 1000px; /* Efecto de profundidad */
             margin: 10px auto !important;
