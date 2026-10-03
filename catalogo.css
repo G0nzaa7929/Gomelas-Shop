@@ -62,7 +62,11 @@ body {
             max-width: 320px;
             height: 440px !important; /* Altura fija para que la tarjeta no colapse al girar */
             perspective: 1000px; /* Efecto de profundidad */
-            margin: 6px auto !important;
+            margin: 10px auto !important;
+             margin-top: 0px !important;
+            margin-bottom: 15px !important;
+             margin-left: auto !important;
+            margin-right: auto !important;
             box-sizing: border-box !important;
         }
 
