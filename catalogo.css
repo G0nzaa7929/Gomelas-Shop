@@ -256,7 +256,9 @@ body {
             background: #fff5fe; 
             border: 2px solid #FFBDF8;
             border-radius: 12px;
-            gap: 40px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 15px !important;
             padding: 20px;
             max-width: 400px;
             margin: 30px auto;
@@ -296,9 +298,10 @@ body {
             font-weight: bold;
             width: 100%;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 0px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            box-sizing: border-box !important;
         }
 
         .btn-pagar:hover {
