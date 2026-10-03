@@ -41,7 +41,7 @@ body {
             display: flex !important;
             flex-direction: column !important;
             align-items: center;
-            gap: 90px !important;
+            gap: 40px !important;
             padding: 20px;
             max-width: 600px;
             margin: 0 auto;
@@ -60,13 +60,10 @@ body {
             padding: 0 !important;
             width: 100%;
             max-width: 320px;
-            height: 440px !important; /* Altura fija para que la tarjeta no colapse al girar */
+            height: 460px !important; /* Altura fija para que la tarjeta no colapse al girar */
             perspective: 1000px; /* Efecto de profundidad */
             margin: 10px auto !important;
-             margin-top: 0px !important;
-            margin-bottom: 15px !important;
-             margin-left: auto !important;
-            margin-right: auto !important;
+            margin-bottom: 70px !important;
             box-sizing: border-box !important;
         }
 
@@ -197,9 +194,8 @@ body {
             box-shadow: 0px 4px 6px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
             box-sizing: border-box;
-            gap: 50px !important;
-            margin-top: 10px !important;
-            margin-bottom: 20px !important;
+            margin-top: 15px !important;
+            margin-bottom: 35px !important;
         }
 
         .btn-agg:hover {
