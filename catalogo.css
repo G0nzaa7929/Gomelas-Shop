@@ -60,7 +60,8 @@ body {
             padding: 0 !important;
             width: 100%;
             max-width: 280px;
-            height: 450px; /* Altura fija para que la tarjeta no colapse al girar */
+            min-height: 260px !important;
+            height: auto !important; /* Altura fija para que la tarjeta no colapse al girar */
             perspective: 1000px; /* Efecto de profundidad */
             margin: 0 auto !important;
             box-sizing: border-box !important;
@@ -122,15 +123,14 @@ body {
         .producto-imagen {
     width: 100% !important;
     max-width: 120px !important;
-    height: 120px !important;
-    
+    height: 110px !important; 
     object-fit: cover !important; 
     object-position: center !important;
-    
     margin: 0 auto 10px auto !important;
-
     border-radius: 8px;
-    image-rendering: auto !important; 
+    image-rendering: auto !important;
+    transform-style: preserve-3d !important;
+    backface-visibility: hidden !important;
 }
 
         .producto-titulo {
