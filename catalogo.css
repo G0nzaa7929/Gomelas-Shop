@@ -61,7 +61,7 @@ body {
             width: 100%;
             max-width: 480px;
             height: auto !important; /* Altura fija para que la tarjeta no colapse al girar */
-            aspect-ratio: 320 / 830 !important;
+            aspect-ratio: 320 / 700 !important;
             overflow: visible !important;
             perspective: 1000px; /* Efecto de profundidad */
             margin: 10px auto !important;
