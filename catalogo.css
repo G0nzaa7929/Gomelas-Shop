@@ -60,7 +60,7 @@ body {
             padding: 0 !important;
             width: 100%;
             max-width: 320px;
-            height: 505px !important; /* Altura fija para que la tarjeta no colapse al girar */
+            height: 560px !important; /* Altura fija para que la tarjeta no colapse al girar */
             overflow: visible !important;
             perspective: 1000px; /* Efecto de profundidad */
             margin: 10px auto !important;
@@ -124,7 +124,7 @@ body {
         .producto-imagen {
     width: 100% !important;
     max-width: 100% !important;
-    height: 240px !important; 
+    height: 200px !important; 
     object-fit: cover !important; 
     object-position: center !important;
     margin: 0 auto 10px auto !important;
@@ -135,8 +135,7 @@ body {
         .producto-titulo {
             font-size: 1.1rem;
             margin: 10px 0 5px 0 !important;
-            margin-top: 5px;
-            margin-bottom: 5px;
+            margin: 5px 0;
             color: #333333;
         }
 
@@ -162,6 +161,8 @@ body {
         }
 
         .opcion-grupo label {
+            margin-right: 10px;
+            white-space: nowrap;
             font-size: 0.9rem;
             color: #555555;
         }
@@ -195,8 +196,8 @@ body {
             box-shadow: 0px 4px 6px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
             box-sizing: border-box;
-            margin-top: 15px !important;
-            margin-bottom: 35px !important;
+            margin-top: 5px !important;
+            margin-bottom: 0px !important;
         }
 
         .btn-agg:hover {
