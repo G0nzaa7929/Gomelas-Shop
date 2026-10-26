@@ -60,7 +60,7 @@ body {
             padding: 0 !important;
             width: 100%;
             max-width: 480px;
-            height: 500px !important; /* Altura fija para que la tarjeta no colapse al girar */
+            height: 380px !important; /* Altura fija para que la tarjeta no colapse al girar */
             overflow: visible !important;
             perspective: 1000px; /* Efecto de profundidad */
             margin: 10px auto !important;
