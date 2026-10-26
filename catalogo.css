@@ -59,8 +59,8 @@ body {
             box-shadow: none !important;
             padding: 0 !important;
             width: 100%;
-            max-width: 320px;
-            height: 560px !important; /* Altura fija para que la tarjeta no colapse al girar */
+            max-width: 360px;
+            height: 620px !important; /* Altura fija para que la tarjeta no colapse al girar */
             overflow: visible !important;
             perspective: 1000px; /* Efecto de profundidad */
             margin: 10px auto !important;
@@ -124,7 +124,7 @@ body {
         .producto-imagen {
     width: 100% !important;
     max-width: 100% !important;
-    height: 200px !important; 
+    height: 260px !important; 
     object-fit: cover !important; 
     object-position: center !important;
     margin: 0 auto 10px auto !important;
