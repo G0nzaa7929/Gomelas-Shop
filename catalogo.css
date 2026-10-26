@@ -149,7 +149,7 @@ body {
 
         /* Contenedor de Selectores (Talla, Color) */
         .producto-opciones {
-            margin-bottom: 15px;
+            margin-bottom: 30px;
             width: 100%;
         }
 
@@ -157,7 +157,7 @@ body {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             width: 100%;
         }
 
